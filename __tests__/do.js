@@ -32,7 +32,7 @@ test ('basic', async () => {
 	
 		var db = await pool.toSet (job, 'db')
 
-		const res = await db.do ('select "number" id from system.numbers limit 2', [], {keep: true})
+		const res = await db.do ('select "number" id from system.numbers limit ?', [2], {keep: true})
 
 		res.setEncoding ('utf8')
 			
