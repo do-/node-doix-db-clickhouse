@@ -31,8 +31,11 @@ test ('basic', async () => {
 	try {
 	
 		var db = await pool.toSet (job, 'db')
+		
+		await db.do ('DROP TABLE IF EXISTS _t')
+		await db.do ('CREATE TABLE _t ENGINE Memory AS SELECT "number" id FROM system.numbers LIMIT ?', [2])
 
-		const res = await db.do ('select "number" id from system.numbers limit ?', [2], {keep: true})
+		const res = await db.do ('select * from _t', [], {keep: true})
 
 		res.setEncoding ('utf8')
 			
