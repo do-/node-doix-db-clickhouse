@@ -1,0 +1,34 @@
+name: e2e tests
+on:
+  - push
+  - pull_request
+
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+    container: library/node:16-alpine
+
+    services:
+      clickhouse:
+        image: clickhouse/clickhouse-server:head
+
+    steps:
+      - name: Install git for jest-badges-action
+        run: apk --no-cache add git
+
+      - name: Config git
+        run: git config --global --add safe.directory '*'
+
+      - name: Check out repository code
+        uses: actions/checkout@v3.1.0
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm run test-ci
+        env:
+          CONNECTION_STRING: 'http://clickhouse:8123'
+
+      - name: Generating coverage badges
+        uses: jpb06/jest-badges-action@latest
