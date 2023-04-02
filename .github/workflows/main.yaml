@@ -13,6 +13,12 @@ jobs:
         image: clickhouse/clickhouse-server:head
 
     steps:
+      - name: Install git for jest-badges-action
+        run: apk --no-cache add git
+
+      - name: Config git
+        run: git config --global --add safe.directory '*'
+
       - name: Check out repository code
         uses: actions/checkout@v3.1.0
 
