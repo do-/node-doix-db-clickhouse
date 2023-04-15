@@ -15,7 +15,7 @@ test ('basic', async () => {
 			
 		let a = []; for await (const r of res) a.push (r)
 
-		expect (a).toStrictEqual ([{id: '0'}, {id: '1'}])
+		expect (a).toStrictEqual ([{id: 0}, {id: 1}])
 
 	}
 	finally {
@@ -37,7 +37,7 @@ test ('array', async () => {
 			
 		let a = []; for await (const r of res) a.push (r)
 
-		expect (a).toStrictEqual ([['0'],['1']])
+		expect (a).toStrictEqual ([[0],[1]])
 
 	}
 	finally {

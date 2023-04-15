@@ -16,7 +16,7 @@ test ('basic', async () => {
 	s.write ('\n["2"]')
 	s.end ()
 
-	expect (a).toStrictEqual ([{id: '1'},{id: '2'}])
+	expect (a).toStrictEqual ([{id: 1},{id: 2}])
 	
 	expect (s [Symbol.for ('columns')]).toStrictEqual ([new DbColumn({name: 'id', type: 'Int32'})])
 
