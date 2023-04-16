@@ -54,16 +54,16 @@ test ('sequence', async () => {
 	
 	try {
 	
-		var db = await pool.toSet (job, 'db')
+		pool.setProxy (job, 'db')
 
-		const o = await db.getScalar ('SELECT number from system.numbers where number between ? AND ?', [1, 10])
+		const o = await job.db.getScalar ('SELECT number from system.numbers where number between ? AND ?', [1, 10])
 
 		expect (o).toBe (1)
 
 	}
 	finally {
 
-		await db.release ()
+		await job.db.release ()
 
 	}
 	

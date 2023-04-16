@@ -31,9 +31,9 @@ test ('array', async () => {
 	
 	try {
 	
-		var db = await pool.toSet (job, 'db')
+		pool.setProxy (job, 'db')
 		
-		const res = await db.getStream ('select "number" id from system.numbers LIMIT ?', [2], {rowMode: 'array'})
+		const res = await job.db.getStream ('select "number" id from system.numbers LIMIT ?', [2], {rowMode: 'array'})
 			
 		let a = []; for await (const r of res) a.push (r)
 
@@ -42,7 +42,7 @@ test ('array', async () => {
 	}
 	finally {
 
-		await db.release ()
+		await job.db.release ()
 
 	}
 	
