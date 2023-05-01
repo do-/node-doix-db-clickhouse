@@ -11,6 +11,8 @@ test ('e7707', async () => {
 	
 		var db = await pool.toSet (job, 'db')
 
+		Object.defineProperty (db, 'url', {})
+
 		await expect (			
 			(async () => {
 				const res = await db.do ('...', [], {keep: true})
@@ -27,13 +29,20 @@ test ('e7707', async () => {
 })
 
 test ('basic', async () => {
+
+	const dbName = 'doix_test_db_1'
 	
 	try {
 	
 		var db = await pool.toSet (job, 'db')
 		
-		await db.do ('DROP TABLE IF EXISTS _t')
-		await db.do ('CREATE TABLE _t ENGINE Memory AS SELECT "number" id FROM system.numbers LIMIT ?', [2])
+		await db.setSession ()
+
+		await db.do (`DROP DATABASE IF EXISTS ${dbName}`)
+		await db.do (`CREATE DATABASE ${dbName}`)
+		await db.do (`USE ${dbName}`)
+		await db.do (`DROP TABLE IF EXISTS _t`)
+		await db.do ('CREATE TABLE _t ENGINE MergeTree ORDER BY (id) AS SELECT "number" id FROM system.numbers LIMIT ?', [2])
 
 		const res = await db.do ('select * from _t', [], {keep: true})
 
