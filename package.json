@@ -1,6 +1,6 @@
 {
   "name": "doix-db-clickhouse",
-  "version": "0.0.7",
+  "version": "0.0.9",
   "description": "ClickHouse support for doix",
   "main": "index.js",
   "files": [
@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/do-/node-doix-db-clickhouse#readme",
   "peerDependencies": {
-    "doix-db": "^0.0.34"
+    "doix-db": "^0.0.35"
   },
   "dependencies": {
   },

@@ -151,3 +151,22 @@ test ('custom error', async () => {
 	}
 	
 })
+
+test ('int null', async () => {
+	
+	try {
+	
+		var db = await pool.toSet (job, 'db')
+
+		const n = await db.getScalar ('SELECT NULL::Nullable(UInt32) id', [])
+		
+		expect (n).toBeNull ()
+		
+	}
+	finally {
+
+		await db.release ()
+
+	}
+	
+})
