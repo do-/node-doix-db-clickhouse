@@ -52,6 +52,8 @@ test ('basic', async () => {
 		
 		expect (t).toBe ('0\n1\n')
 
+		await db.do (`DROP DATABASE ${dbName}`)
+
 	}
 	finally {
 
