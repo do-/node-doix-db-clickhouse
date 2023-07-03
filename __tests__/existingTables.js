@@ -17,7 +17,8 @@ test ('basic', async () => {
 
 		await db.do (`DROP DATABASE IF EXISTS ${dbName}`)
 		await db.do (`CREATE DATABASE ${dbName}`)
-		await db.do (`USE ${dbName}`)
+
+		db.database = dbName
 
 		await db.do ('CREATE TABLE users (id UInt32, label Nullable(String), salary Nullable(Decimal(10, 2)) DEFAULT 0) ENGINE MergeTree ORDER BY (id)')
 
