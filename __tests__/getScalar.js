@@ -1,9 +1,11 @@
 const MockJob = require ('./lib/MockJob.js'), job = new MockJob ()
-const {DbClientCh, DbPoolCh} = require ('..')
+const {DbPoolCh} = require ('..')
 
 const pool = new DbPoolCh ({
 	url: process.env.CONNECTION_STRING,
 })
+
+pool.logger = job.logger
 
 test ('c0NNe+|0N e7707', async () => {
 
@@ -50,20 +52,21 @@ test ('e7707', async () => {
 	
 })
 
+
 test ('sequence', async () => {
 	
 	try {
 	
-		pool.setProxy (job, 'db')
+		var db = await pool.toSet (job, 'db')
 
-		const o = await job.db.getScalar ('SELECT number from system.numbers where number between ? AND ?', [1, 10])
+		const o = await job.db.getScalar ('SELECT number from system.numbers LIMIT ? OFFSET ?', [10, 1])
 
 		expect (o).toBe (1)
 
 	}
 	finally {
 
-		await job.db.release ()
+		await db.release ()
 
 	}
 	

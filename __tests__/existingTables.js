@@ -1,9 +1,11 @@
 const MockJob = require ('./lib/MockJob.js'), job = new MockJob ()
-const {DbClientCh, DbPoolCh} = require ('..')
+const {DbPoolCh} = require ('..')
 
 const pool = new DbPoolCh ({
 	url: process.env.CONNECTION_STRING,
 })
+
+pool.logger = job.logger
 
 test ('basic', async () => {
 

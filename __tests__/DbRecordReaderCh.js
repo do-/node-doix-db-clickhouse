@@ -4,7 +4,9 @@ const DbRecordReaderCh = require ('../lib/DbRecordReaderCh.js')
 
 test ('basic', async () => {
 
-	const s = new DbRecordReaderCh ({lang: new DbLangCh ()})
+	const call = {db: {lang: new DbLangCh ()}, options: {}, objectMode: true}
+
+	const s = new DbRecordReaderCh (call)
 
 	const a = []
 	
@@ -18,6 +20,6 @@ test ('basic', async () => {
 
 	expect (a).toStrictEqual ([{id: 1},{id: 2}])
 	
-	expect (s [Symbol.for ('columns')]).toStrictEqual ([new DbColumn({name: 'id', type: 'Int32'})])
+	expect (call.columns).toStrictEqual ([new DbColumn({name: 'id', type: 'Int32'})])
 
 })

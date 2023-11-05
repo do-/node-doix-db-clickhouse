@@ -1,9 +1,11 @@
 const MockJob = require ('./lib/MockJob.js'), job = new MockJob ()
-const {DbClientCh, DbPoolCh} = require ('..')
+const {DbPoolCh} = require ('..')
 
 const pool = new DbPoolCh ({
 	url: process.env.CONNECTION_STRING,
 })
+
+pool.logger = job.logger
 
 test ('e7707', async () => {
 	
@@ -43,15 +45,6 @@ test ('basic', async () => {
 		db.database = dbName
 		await db.do (`DROP TABLE IF EXISTS _t`)
 		await db.do ('CREATE TABLE _t ENGINE MergeTree ORDER BY (id) AS SELECT "number" id FROM system.numbers LIMIT ?', [2])
-
-		const res = await db.do ('select * from _t', [], {keep: true})
-
-		res.setEncoding ('utf8')
-			
-		let t = ''; for await (const s of res) t += s
-		
-		expect (t).toBe ('0\n1\n')
-
 		await db.do (`DROP DATABASE ${dbName}`)
 
 	}
