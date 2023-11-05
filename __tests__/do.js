@@ -13,13 +13,7 @@ test ('e7707', async () => {
 	
 		var db = await pool.toSet (job, 'db')
 
-		Object.defineProperty (db, 'url', {})
-
-		await expect (			
-			(async () => {
-				const res = await db.do ('...', [], {keep: true})
-			})()			
-		).rejects.toThrow ()
+		await expect (db.do ('...')).rejects.toThrow ()
 
 	}
 	finally {
