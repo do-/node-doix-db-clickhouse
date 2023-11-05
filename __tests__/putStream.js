@@ -16,12 +16,10 @@ test ('bad', async () => {
 		
 		const os = await db.putStream ('', ['id', 'name'])
 
-		const call = os [Symbol.for ('doixDbCall')]
-
 		await new Promise ((ok, fail) => {
 
 			os.on ('error', fail)
-			call.on ('finish', () => call.error ? null : ok ())
+			os.on ('complete', ok)
 			
 			os.write ('1,"Name One"\n')
 			os.end ()
@@ -59,12 +57,11 @@ test ('basic', async () => {
 		await db.do ('CREATE TEMPORARY TABLE _ (id UInt8, name String)')
 
 		const os = await db.putStream ('_', ['id', 'name'])
-		const call = os [Symbol.for ('doixDbCall')]
 
 		await new Promise ((ok, fail) => {
 
 			os.on ('error', fail)
-			call.on ('finish', () => call.error ? null : ok ())
+			os.on ('complete', ok)
 			
 			os.write ('1,"Name One"\n')
 			os.end ()
