@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/do-/node-doix-db-clickhouse#readme",
   "peerDependencies": {
-    "doix-db": "^1.0.25"
+    "doix-db": "^1.0.26"
   },
   "dependencies": {
   },
