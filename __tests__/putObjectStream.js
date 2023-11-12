@@ -107,7 +107,7 @@ test ('rte', async () => {
 		await db.do (`CREATE DATABASE ${dbName}`)
 		db.database = dbName
 
-		await db.do ('CREATE TEMPORARY TABLE _ (id UInt8, name Nullable(String), dt Nullable(Date), ts Nullable(DateTime64), amount Nullable(Decimal(10,2)))')
+		await db.createTempTable (model.find ('_'))
 
 		const os = await db.putStream ('_', ['id', 'name', 'dt', 'amount', 'ts'], {objectMode: true})
 
@@ -158,9 +158,9 @@ test ('basic', async () => {
 		name: 'String',
 		dt: 'Date',
 		ts: 'DateTime64',
-		amount: 'Decimal(10,2)',
+		amount: 'Decimal(10,2)=0',
 	}})
-		
+
 	try {
 	
 		var db = await pool.toSet (job, 'db')
@@ -171,13 +171,13 @@ test ('basic', async () => {
 		await db.do (`CREATE DATABASE ${dbName}`)
 		db.database = dbName
 
-		await db.do ('CREATE TEMPORARY TABLE _ (id UInt8, name Nullable(String), dt Nullable(Date), ts Nullable(DateTime64), amount Nullable(Decimal(10,2)))')
+		await db.createTempTable ('_')
 
 		const os = await db.putStream ('_', ['id', 'name', 'dt', 'amount', 'ts'], {objectMode: true})
 
 		const src = [
 			{id: 1, name: 'Name "One"', dt: '1970-01-01', amount: 3.72, ts: '2000-01-01 01:23:45.678'},
-			{id: 2, name: null, dt: null, amount: null, ts: null},
+			{id: 2, name: null, dt: null, amount: 0, ts: null},
 		]
 
 		await new Promise ((ok, fail) => {
