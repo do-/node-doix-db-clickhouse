@@ -14,7 +14,7 @@ test ('bad option', async () => {
 	
 		var db = await pool.toSet (job, 'db')
 		
-		const os = await db.putStream ('', ['id', 'name'], {objectMode: 1})
+		const os = await db.putObjectStream ('', ['id', 'name'])
 
 		await new Promise ((ok, fail) => {
 
@@ -58,7 +58,7 @@ test ('bad table', async () => {
 	
 		var db = await pool.toSet (job, 'db')
 		
-		const os = await db.putStream ('', ['id', 'name'], {objectMode: true})
+		const os = await db.putObjectStream ('', ['id', 'name'], {})
 
 		await new Promise ((ok, fail) => {
 
@@ -109,7 +109,7 @@ test ('rte', async () => {
 
 		await db.createTempTable (model.find ('_'))
 
-		const os = await db.putStream ('_', ['id', 'name', 'dt', 'amount', 'ts'], {objectMode: true})
+		const os = await db.putObjectStream ('_', ['id', 'name', 'dt', 'amount', 'ts'])
 
 		const src = [
 			{id: 1, name: 'Name "One"', dt: 'xxx', amount: 3.72, ts: '2000-01-01 01:23:45.678'},
@@ -173,22 +173,12 @@ test ('basic', async () => {
 
 		await db.createTempTable ('_')
 
-		const os = await db.putStream ('_', ['id', 'name', 'dt', 'amount', 'ts'], {objectMode: true})
-
 		const src = [
 			{id: 1, name: 'Name "One"', dt: '1970-01-01', amount: 3.72, ts: '2000-01-01 01:23:45.678'},
 			{id: 2, name: null, dt: null, amount: 0, ts: null},
 		]
 
-		await new Promise ((ok, fail) => {
-
-			os.on ('error', fail)
-			os.on ('complete', ok)
-
-			for (const r of src) os.write (r)
-			os.end ()
-
-		})
+		await db.insert ('_', src)
 
 		{
 			const rs = await db.getArray ('SELECT *  FROM _')

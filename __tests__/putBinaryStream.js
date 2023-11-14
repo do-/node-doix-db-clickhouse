@@ -14,7 +14,7 @@ test ('bad', async () => {
 	
 		var db = await pool.toSet (job, 'db')
 		
-		const os = await db.putStream ('', ['id', 'name'])
+		const os = await db.putBinaryStream ('', ['id', 'name'])
 
 		await new Promise ((ok, fail) => {
 
@@ -56,7 +56,7 @@ test ('basic', async () => {
 
 		await db.do ('CREATE TEMPORARY TABLE _ (id UInt8, name Nullable(String), dt Nullable(Date), amount Nullable(Decimal(10,2)))')
 
-		const os = await db.putStream ('_', ['id', 'name', 'dt', 'amount'])
+		const os = await db.putBinaryStream ('_', ['id', 'name', 'dt', 'amount'], {})
 
 		await new Promise ((ok, fail) => {
 
