@@ -13,7 +13,14 @@ test ('e7707', async () => {
 	
 		var db = await pool.toSet (job, 'db')
 
-		await expect (db.do ('...')).rejects.toThrow ()
+		await db.do ('...')
+
+		throw '?'
+
+	}
+	catch (err) {
+
+		expect (err.stack).toMatch ('do.js')
 
 	}
 	finally {

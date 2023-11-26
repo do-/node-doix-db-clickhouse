@@ -1,6 +1,6 @@
 {
   "name": "doix-db-clickhouse",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "ClickHouse support for doix",
   "main": "index.js",
   "files": [
