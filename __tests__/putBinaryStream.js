@@ -12,7 +12,7 @@ test ('bad', async () => {
 	
 	try {
 	
-		var db = await pool.toSet (job, 'db')
+		var db = await pool.setResource (job, 'db')
 		
 		const os = await db.putBinaryStream ('', ['id', 'name'])
 
@@ -46,7 +46,7 @@ test ('basic', async () => {
 	
 	try {
 	
-		var db = await pool.toSet (job, 'db')
+		var db = await pool.setResource (job, 'db')
 		
 		await db.setSession ()
 

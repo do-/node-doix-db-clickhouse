@@ -12,7 +12,7 @@ test ('bad option', async () => {
 	
 	try {
 	
-		var db = await pool.toSet (job, 'db')
+		var db = await pool.setResource (job, 'db')
 		
 		const os = await db.putObjectStream ('', ['id', 'name'])
 
@@ -56,7 +56,7 @@ test ('bad table', async () => {
 		
 	try {
 	
-		var db = await pool.toSet (job, 'db')
+		var db = await pool.setResource (job, 'db')
 		
 		const os = await db.putObjectStream ('', ['id', 'name'], {})
 
@@ -99,7 +99,7 @@ test ('rte', async () => {
 		
 	try {
 	
-		var db = await pool.toSet (job, 'db')
+		var db = await pool.setResource (job, 'db')
 
 		await db.setSession ()
 
@@ -163,7 +163,7 @@ test ('basic', async () => {
 
 	try {
 	
-		var db = await pool.toSet (job, 'db')
+		var db = await pool.setResource (job, 'db')
 
 		await db.setSession ()
 

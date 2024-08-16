@@ -11,7 +11,7 @@ test ('e7707', async () => {
 	
 	try {
 	
-		var db = await pool.toSet (job, 'db')
+		var db = await pool.setResource (job, 'db')
 
 		await db.do ('...')
 
@@ -37,7 +37,7 @@ test ('basic', async () => {
 	
 	try {
 	
-		var db = await pool.toSet (job, 'db')
+		var db = await pool.setResource (job, 'db')
 		
 		await db.setSession ()
 

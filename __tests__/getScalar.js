@@ -12,7 +12,7 @@ test ('c0NNe+|0N e7707', async () => {
 
 	try {
 	
-		var db = await (new DbPoolCh ({})).toSet (job, 'db')
+		var db = await (new DbPoolCh ({})).setResource (job, 'db')
 
 		const s = await db.getScalar ('...')	
 
@@ -34,7 +34,7 @@ test ('e7707', async () => {
 	
 	try {
 	
-		var db = await pool.toSet (job, 'db')
+		var db = await pool.setResource (job, 'db')
 
 		const s = await db.getScalar ('...')	
 
@@ -57,7 +57,7 @@ test ('sequence', async () => {
 	
 	try {
 	
-		var db = await pool.toSet (job, 'db')
+		var db = await pool.setResource (job, 'db')
 
 		const o = await job.db.getScalar ('SELECT number from system.numbers LIMIT ? OFFSET ?', [10, 1])
 
@@ -76,7 +76,7 @@ test ('1-to-1', async () => {
 	
 	try {
 	
-		var db = await pool.toSet (job, 'db')
+		var db = await pool.setResource (job, 'db')
 
 		const o = await db.getScalar ('SELECT 1::UInt32 id', [])
 
@@ -95,7 +95,7 @@ test ('default', async () => {
 	
 	try {
 	
-		var db = await pool.toSet (job, 'db')
+		var db = await pool.setResource (job, 'db')
 
 		const o = await db.getScalar ('SELECT ? id WHERE 0=1', ['z'])
 
@@ -114,7 +114,7 @@ test ('custom default', async () => {
 	
 	try {
 	
-		var db = await pool.toSet (job, 'db')
+		var db = await pool.setResource (job, 'db')
 
 		const DEF = -1
 
@@ -137,7 +137,7 @@ test ('custom error', async () => {
 
 	try {
 	
-		var db = await pool.toSet (job, 'db')
+		var db = await pool.setResource (job, 'db')
 		
 		const o = await db.getScalar ('SELECT 1 id WHERE 0=1', [], {notFound: DEF})
 
@@ -159,7 +159,7 @@ test ('int null', async () => {
 	
 	try {
 	
-		var db = await pool.toSet (job, 'db')
+		var db = await pool.setResource (job, 'db')
 
 		const n = await db.getScalar ('SELECT NULL::Nullable(UInt32) id', [])
 		
