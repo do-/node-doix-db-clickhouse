@@ -10,7 +10,7 @@ jobs:
 
     services:
       clickhouse:
-        image: clickhouse/clickhouse-server:head
+        image: clickhouse/clickhouse-server:24.8
 
     steps:
       - name: Install git for jest-badges-action
