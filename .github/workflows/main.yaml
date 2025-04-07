@@ -32,7 +32,7 @@ jobs:
       - name: Run tests
         run: npm run test-ci
         env:
-          CONNECTION_STRING: 'http://clickhouse:8123'
+          CONNECTION_STRING: 'http://default:z@clickhouse:8123/default'
 
       - name: Generating coverage badges
         uses: jpb06/jest-badges-action@latest
