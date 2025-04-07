@@ -11,6 +11,10 @@ jobs:
     services:
       clickhouse:
         image: clickhouse/clickhouse-server:24.8
+        env:
+          CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT: 1
+          CLICKHOUSE_USER: default
+          CLICKHOUSE_PASSWORD: z
 
     steps:
       - name: Install git for jest-badges-action
