@@ -22,7 +22,7 @@ test ('basic', async () => {
 
 	expect (a).toStrictEqual ([{id: 1},{id: 2}])
 
-	const col = new DbColumn({name: 'id', type: 'Int32'})
+	const col = new DbColumn({name: 'id', type: 'Int32', nullable: false})
 	col.setLang (lang)
 	delete col.typeDim
 	delete col.qName

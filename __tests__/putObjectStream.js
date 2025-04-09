@@ -174,8 +174,8 @@ test ('basic', async () => {
 		await db.createTempTable ('_')
 
 		const src = [
-			{id: 1, name: 'Name "One"', dt: '1970-01-01', amount: 3.72, ts: '2000-01-01 01:23:45.678'},
-			{id: 2, name: null, dt: null, amount: 0, ts: null},
+			{id: 1, name: 'Name "One"', dt: '1970-01-01', amount: "3.72", ts: '2000-01-01 01:23:45.678'},
+			{id: 2, name: null, dt: null, amount: "0.00", ts: null},
 		]
 
 		await db.insert ('_', src)

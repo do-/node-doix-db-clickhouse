@@ -72,7 +72,7 @@ test ('basic', async () => {
 		const a = await db.getArray ('SELECT *  FROM _')
 
 		expect (a).toStrictEqual ([
-			{id: 1, name: 'Name "One"', dt: '1970-01-01', amount: 3.72},
+			{id: 1, name: 'Name "One"', dt: '1970-01-01', amount: "3.72"},
 			{id: 2, name: null, dt: null, amount: null},
 		])		
 
