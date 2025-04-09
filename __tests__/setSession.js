@@ -15,16 +15,16 @@ test ('basic', async () => {
 				
 		await job.db.setSession ()
 
-		expect (job.db.url).toMatch ('session_id=' + job.db.uuid)
+		expect (job.db.getURL (true)).toMatch ('session_id=' + job.db.uuid)
 		
 		await job.db.setSession (null)
 
-		expect (job.db.url).not.toMatch ('session_id')
+		expect (job.db.getURL (false)).not.toMatch ('session_id')
 
 		await job.db.setSession ('abc', 123)
 
-		expect (job.db.url).toMatch ('session_id=abc')
-		expect (job.db.url).toMatch ('session_timeout=123')
+		expect (job.db.getURL (true)).toMatch ('session_id=abc')
+		expect (job.db.getURL (false)).toMatch ('session_timeout=123')
 
 	}
 	finally {
