@@ -94,6 +94,7 @@ test ('model', async () => {
 				{id: 1},
 			])
 
+			await db.do (`ALTER TABLE tb_0 MODIFY COLUMN id UInt8`)
 			await db.do (`ALTER TABLE tb_0 ADD COLUMN drop_me String DEFAULT ''`)
 			await db.do (`ALTER TABLE tb_0 ADD COLUMN drop_me_too String DEFAULT ''`)
 
