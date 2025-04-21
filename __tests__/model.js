@@ -55,6 +55,9 @@ test ('model', async () => {
 		expect (() => db.lang.genCreate (db.model.find ('vw_1'))).toThrow ("'t know")
 
 		await db.doAll (plan.genDDL ())
+
+		expect (await db.getScalar (`SELECT regexp_like ('ab', 'a$')`)).toBe (0)
+		expect (await db.getScalar (`SELECT regexp_like ('ab', '^a')`)).toBe (1)
 		
 		{
 
