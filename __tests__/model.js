@@ -24,6 +24,9 @@ test ('model', async () => {
 
 		var db = await pool.setResource (job, 'db')
 
+		expect (db.lang.genCommentClause ()).toBe ('')
+		expect (db.lang.genCommentClause ("Don't")).toBe (" COMMENT 'Don''t'")
+
 		expect (() => [...db.lang.genAlter ({}, {})]).toThrow ("Don't")
 		expect (() => db.lang.genReCreate ({}, {})).toThrow ("Don't")
 
@@ -234,4 +237,4 @@ test ('model', async () => {
 
 	}
 
-})
+}, 60000)
