@@ -24,10 +24,7 @@
   },
   "homepage": "https://github.com/do-/node-doix-db-clickhouse#readme",
   "peerDependencies": {
-    "doix-db": "^1.0.74"
-  },
-  "dependencies": {
-    "model": "^6.0.1"
+    "doix-db": "^1.0.78"
   },
   "devDependencies": {
     "jest": "^29.3.1"
