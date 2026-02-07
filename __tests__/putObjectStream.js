@@ -159,6 +159,7 @@ test ('basic', async () => {
 		dt: 'Date',
 		ts: 'DateTime64',
 		amount: 'Decimal(10,2)=0',
+		weight: 'Float64',
 	}})
 
 	try {
@@ -174,8 +175,8 @@ test ('basic', async () => {
 		await db.createTempTable ('_')
 
 		const src = [
-			{id: 1, name: 'Name "One"', dt: '1970-01-01', amount: "3.72", ts: '2000-01-01 01:23:45.678'},
-			{id: 2, name: null, dt: null, amount: "0.00", ts: null},
+			{id: 1, name: 'Name "One"', dt: '1970-01-01', amount: "3.72", ts: '2000-01-01 01:23:45.678', weight: 3.14},
+			{id: 2, name: null, dt: null, amount: "0.00", ts: null, weight: null},
 		]
 
 		await db.insert ('_', src)
