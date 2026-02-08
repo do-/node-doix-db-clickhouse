@@ -176,7 +176,7 @@ test ('basic', async () => {
 
 		const src = [
 			{id: 1, name: 'Name "One"', dt: '1970-01-01', amount: "3.72", ts: '2000-01-01 01:23:45.678', weight: 3.14},
-			{id: 2, name: null, dt: null, amount: "0.00", ts: null, weight: null},
+			{id: 2, name: null, dt: null, amount: "0.00", ts: null, weight: Infinity},
 		]
 
 		await db.insert ('_', src)

@@ -1,6 +1,6 @@
 {
   "name": "doix-db-clickhouse",
-  "version": "1.0.77",
+  "version": "1.0.79",
   "description": "ClickHouse support for doix",
   "main": "index.js",
   "files": [
@@ -8,10 +8,10 @@
     "/badges"
   ],
   "scripts": {
-      "pretest": "which docker && (docker rm -f clickhouse 2>/dev/null || true) && docker run -d --name clickhouse -p 8123:8123 -p 9000:9000 -e CLICKHOUSE_DB=default -e CLICKHOUSE_USER=default -e CLICKHOUSE_PASSWORD=z -e CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT=1 clickhouse/clickhouse-server:24.8 || true",
-      "test": "CONNECTION_STRING=http://default:z@localhost:8123 jest",
-      "test-ci": "jest --ci --coverage",
-      "jest": "jest"
+    "pretest": "which docker && (docker rm -f clickhouse 2>/dev/null || true) && docker run -d --name clickhouse -p 8123:8123 -p 9000:9000 -e CLICKHOUSE_DB=default -e CLICKHOUSE_USER=default -e CLICKHOUSE_PASSWORD=z -e CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT=1 clickhouse/clickhouse-server:24.8 || true",
+    "test": "CONNECTION_STRING=http://default:z@localhost:8123 jest",
+    "test-ci": "jest --ci --coverage",
+    "jest": "jest"
   },
   "repository": {
     "type": "git",
@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/do-/node-doix-db-clickhouse#readme",
   "peerDependencies": {
-    "doix-db": "^1.0.78"
+    "doix-db": "^1.0.79"
   },
   "devDependencies": {
     "jest": "^29.3.1"
@@ -46,5 +46,8 @@
       "/__tests__/data",
       "/__tests__/lib"
     ]
+  },
+  "dependencies": {
+    "csv-events": "^1.0.0"
   }
 }
