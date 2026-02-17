@@ -1,6 +1,6 @@
 {
   "name": "doix-db-clickhouse",
-  "version": "1.0.80",
+  "version": "1.0.81",
   "description": "ClickHouse support for doix",
   "main": "index.js",
   "files": [
@@ -48,6 +48,6 @@
     ]
   },
   "dependencies": {
-    "csv-events": "^1.1.0"
+    "csv-events": "^1.1.1"
   }
 }
